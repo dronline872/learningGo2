@@ -10,7 +10,7 @@ type ErrorWithTime struct {
 	text string
 }
 
-func NewError(text string) error {
+func NewErrorWithTime(text string) error {
 	timeNow := time.Now().Format("15:04:05")
 	return &ErrorWithTime{
 		time: timeNow,
@@ -30,7 +30,7 @@ func main() {
 func panicFunction() {
 	defer func() {
 		if v := recover(); v != nil {
-			err := NewError(fmt.Sprint(v))
+			err := NewErrorWithTime(fmt.Sprint(v))
 			fmt.Println(err)
 		}
 	}()
